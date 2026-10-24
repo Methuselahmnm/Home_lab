@@ -1,1 +1,12 @@
 
+sudo apt update && sudo apt full-upgrade -y
+sudo apt install -y ufw fail2ban unattended-upgrades openssh-server htop curl git
+sudo mkdir -p /srv/lab/{iso,vms,docker,backups} && sudo chown -R $USER:$USER /srv/lab
+
+# Firewall
+sudo ufw default deny incoming && sudo ufw default allow outgoing
+sudo ufw allow OpenSSH
+sudo ufw enable
+
+# Swap safety net (zram)
+sudo apt install -y zram-tools
